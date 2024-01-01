@@ -1,0 +1,13 @@
+[code]
+editor = 'vim'
+lang = 'golang'
+
+[cookies]
+csrf = "${csrftoken}"
+session = "${LEETCODE_SESSION}"
+
+[storage]
+cache = 'Problems'
+code = 'code'
+root = '~/.leetcode'
+scripts = 'scripts'
