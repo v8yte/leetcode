@@ -1,5 +1,5 @@
 func romanToInt(s string) int {
-    romanNums := map[byte]int{
+    romanMap := map[byte]int{
         'I':1,
         'V':5,
         'X':10,
@@ -8,19 +8,15 @@ func romanToInt(s string) int {
         'D':500,
         'M':1000,
     }
-    
-    ans := romanNums[s[0]]
+    var ans int
 
-    if len(s) == 1 {
-        return ans
-    }
-
-    for i := 1; i < len(s); i++ {
-        if romanNums[s[i]] <= romanNums[s[i-1]]{
-            ans += romanNums[s[i]]
+    for i := 0; i < len(s)-1; i++ {
+        if romanMap[s[i]] < romanMap[s[i+1]]{
+            ans -= romanMap[s[i]]
         }else{
-            ans += romanNums[s[i]] - romanNums[s[i-1]]*2
+            ans += romanMap[s[i]]
         }
     }
-    return ans
+    
+    return ans + romanMap[s[len(s)-1]]
 }
