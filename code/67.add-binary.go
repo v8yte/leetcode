@@ -1,33 +1,24 @@
 func addBinary(a string, b string) string {
-    return decimalToBinary(binaryToDecimal(a) + binaryToDecimal(b))
-}
-
-func binaryToDecimal(x string) int{
-    var decimal int
-    for i,v := range x { 
-        value,_ := strconv.Atoi(string(v))
-        decimal += int(math.Pow(2,float64(len(x)-i-1))) * value
-    }
-    return decimal
-}
-
-func decimalToBinary(x int) string{
-    if x == 0 {
-        return "0"
+    if len(a) < len(b) {
+        a, b = b, a
     }
 
-    var builder strings.Builder
-    for x > 0 {
-        builder.WriteString(strconv.Itoa(x%2))
-        x /= 2
-    }
-    return reverse(builder.String())
-}
+    indexB := len(b)-1
+    ans := make([]byte, len(a))
 
-func reverse(s string) string{
-    runes := []rune(s)
-    for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-        runes[i], runes[j] = runes[j], runes[i]
+    var shifter, sum byte
+    for i := len(a)-1; i >=0; i-- {
+        sum = shifter + a[i]
+        if indexB >= 0 {
+            sum += b[indexB]
+            indexB--
+        }
+        ans[i] = sum%2 + '0'
+        shifter = sum / 2
     }
-    return string(runes)
+    if shifter == 0 {
+        return string(ans)
+    }
+
+    return "1" + string(ans)
 }
