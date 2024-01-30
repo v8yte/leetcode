@@ -1,13 +1,10 @@
 func twoSum(nums []int, target int) []int {
-    // target - num が辞書にあるか
-    // 辞書に突っ込む O(n)
-    numsMap := make(map[int]int,len(nums)-1)
-    
-    for i, num := range nums {
-        if idx,ok := numsMap[target - num]; ok {
-            return []int{i,idx}
+    hashmap := map[int]int{}
+    for i,num := range nums {
+        if v,ok := hashmap[target-num]; ok{
+            return []int{v,i}
         }
-        numsMap[num] = i
+        hashmap[num] = i
     }
     return []int{}
 }
