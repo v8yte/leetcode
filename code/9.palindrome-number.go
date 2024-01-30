@@ -2,12 +2,13 @@ func isPalindrome(x int) bool {
     if x < 0 {
         return false
     }
-
+    
     X := x
     var y int
-    for x > 0 {
-        y = 10*y + x%10
-        x /= 10
+    for X > 0 {
+        y = y*10 + X%10
+        X /= 10
     }
-    return y == X
+    
+    return x == y
 }
